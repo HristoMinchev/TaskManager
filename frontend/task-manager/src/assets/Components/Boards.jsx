@@ -1,12 +1,40 @@
 import React from 'react'
+import { IoAddCircle } from "react-icons/io5"
 
 export default function Boards() {
   return (
-    <div 
-      className="flex-1 h-[calc(100vh-2rem) m-5 p-5 border-1 rounded-xl text-white overflow-auto"
-    >
-      <div>
+    <div className="flex-1 h-[calc(100vh-2rem)] m-5 p-5 border-1 rounded-xl text-white overflow-auto relative">
+      <div className="flex flex-row gap-4">
+        <div className="flex-1 border border-gray-600 p-4 rounded-lg">
+          <div className="flex items-center gap-2">
+            <span className="h-4 w-4 bg-blue-500 rounded-full"></span>
+            <h2>Backlogs</h2>
+          </div>
+        </div>
+        <div className="flex-1 border border-gray-600 p-4 rounded-lg">
+          <div className="flex items-center gap-2">
+            <span className="h-4 w-4 bg-yellow-500 rounded-full"></span>
+            <h2>In Progress</h2>
+          </div>
+        </div>
+        <div className="flex-1 border border-gray-600 p-4 rounded-lg">
+          <div className="flex items-center gap-2">
+            <span className="h-4 w-4 bg-purple-500 rounded-full"></span>
+            <h2>In Review</h2>
+          </div>
+        </div>
+        <div className="flex-1 border border-gray-600 p-4 rounded-lg">
+          <div className="flex items-center gap-2">
+            <span className="h-4 w-4 bg-green-500 rounded-full"></span>
+            <h2>Completed</h2>
+          </div>
+        </div>
       </div>
+      <button 
+        className="absolute bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center"
+      >
+        <IoAddCircle size={34} />
+      </button>
     </div>
   )
 }

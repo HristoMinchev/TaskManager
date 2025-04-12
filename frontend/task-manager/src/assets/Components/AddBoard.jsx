@@ -86,6 +86,13 @@ export default function AddBoard() {
           />
         </form>
       </div>
+            <div className="flex items-center justify-center">
+                <button
+                  className="flex items-center justify-center text-white rounded-md px-4 py-2 text-lg cursor-pointer gap-2 bg-blue-500 hover:bg-blue-600 mt-5"
+                >
+                 Save
+                </button>
+            </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import UserNav from './assets/Components/UserNav.jsx'
 import Boards from './assets/Components/Boards.jsx'
+import AddBoard from './assets/Components/AddBoard.jsx'
 
 function App() {
   return (

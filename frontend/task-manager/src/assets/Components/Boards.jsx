@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoAddCircle } from "react-icons/io5"
+import AddBoard from './AddBoard'
 
 export default function Boards() {
+  const [clicked, isClicked] = useState(false)
+
   return (
     <div className="flex-1 h-[calc(100vh-2rem)] m-5 p-5 border-1 rounded-xl text-white overflow-auto relative">
       <div className="flex flex-row gap-4">
@@ -30,11 +33,29 @@ export default function Boards() {
           </div>
         </div>
       </div>
-      <button 
-        className="absolute bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center"
+
+
+      <button
+        onClick={() => isClicked(true)}
+        className="absolute bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center cursor-pointer"
       >
         <IoAddCircle size={34} />
       </button>
+
+
+      {clicked && (
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-10">
+          <div className="">
+            <AddBoard />
+            <button
+              onClick={() => isClicked(false)}
+              className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-600 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"    
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

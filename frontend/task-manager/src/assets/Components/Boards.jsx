@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IoAddCircle } from "react-icons/io5"
 import AddBoard from './AddBoard'
 
-export default function Boards() {
+export default function Boards({ tasks, onAddBoard }) {
   const [clicked, isClicked] = useState(false)
 
   return (
@@ -33,7 +33,11 @@ export default function Boards() {
           </div>
         </div>
       </div>
-
+      <ul>
+            {tasks.map((task, index) => (
+              <li key={index}>{task.name}, {task.info}</li>
+            ))}
+        </ul>
 
       <button
         onClick={() => isClicked(true)}
@@ -42,14 +46,16 @@ export default function Boards() {
         <IoAddCircle size={34} />
       </button>
 
-
       {clicked && (
         <div className="absolute inset-0 bg-white/10 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-10">
-          <div className="">
-            <AddBoard />
+          <div className="relative">
+            <AddBoard onAdd={(newBoard) => {
+              onAddBoard(newBoard) // Pass the new board to App.jsx
+              isClicked(false) // Close the modal
+            }} />
             <button
               onClick={() => isClicked(false)}
-              className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-600 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"    
+              className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-600 rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
             >
               ✕
             </button>

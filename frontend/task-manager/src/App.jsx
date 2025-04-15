@@ -1,16 +1,19 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import UserNav from './assets/Components/UserNav.jsx'
 import Boards from './assets/Components/Boards.jsx'
-import AddBoard from './assets/Components/AddBoard.jsx'
 
 function App() {
+  const [boards, setBoards] = useState([]) // State to manage boards
+
+  const handleAddBoard = (newBoard) => {
+    setBoards([...boards, newBoard]) // Add the new board to the list
+  }
+
   return (
     <div className="flex h-screen w-screen">
       <UserNav />
-      <Boards />
+      <Boards tasks={boards} onAddBoard={handleAddBoard} />
     </div>
   )
 }

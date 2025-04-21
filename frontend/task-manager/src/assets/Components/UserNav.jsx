@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { IoAddCircle } from "react-icons/io5"
 
-export default function UserNav() {
-  const [boards, setBoards] = useState([]) // List of boards
+export default function UserNav({ boards, onAddBoard, onSelectBoard, selectedBoardId }) {
   const [inputValue, setInputValue] = useState('')
-  const [isAdding, setIsAdding] = useState(false) // Toggle input visibility
+  const [isAdding, setIsAdding] = useState(false)
 
   const handleAddClick = () => {
     setIsAdding(true)
@@ -16,20 +15,25 @@ export default function UserNav() {
 
   const handleSave = () => {
     if (inputValue.trim() !== '') {
-      setBoards([...boards, inputValue]) // Add new board to the list
+      const newBoard = { id: Date.now().toString(), name: inputValue }
+      onAddBoard(newBoard) // Call the parent function to add the board
       setInputValue('') // Clear input field
       setIsAdding(false) // Hide input field
     }
   }
 
   return (
-    <div
-      className="h-[calc(100vh-2rem)] w-[300px] m-4 border-1 text-white flex flex-col items-center justify-start pt-8 rounded-2xl overflow-auto"
-    >
+    <div className="h-[calc(100vh-2rem)] w-[300px] m-4 border-1 text-white flex flex-col items-center justify-start pt-8 rounded-2xl overflow-auto">
       <div className="w-full px-4 flex flex-col items-center">
-        {boards.map((board, index) => (
-          <h2 key={index} className="text-lg font-medium m-2 text-center border border-gray-600 w-60 h-12 rounded-lg cursor-pointer flex items-center justify-center bg-gray-700 text-white hover:bg-gray-600 hover:shadow-md transition-all overflow-hidden">
-            {board}
+        {boards.map((board) => (
+          <h2
+            key={board.id}
+            onClick={() => onSelectBoard(board.id)} // Switch to the selected board
+            className={`text-lg font-medium m-2 text-center border border-gray-600 w-60 h-12 rounded-lg cursor-pointer flex items-center justify-center bg-gray-700 text-white hover:bg-gray-600 hover:shadow-md transition-all overflow-hidden ${
+              selectedBoardId === board.id ? 'outline outline-2 outline-white' : ''
+            }`}
+          >
+            {board.name}
           </h2>
         ))}
 

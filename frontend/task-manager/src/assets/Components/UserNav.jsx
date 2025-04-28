@@ -16,9 +16,9 @@ export default function UserNav({ boards, onAddBoard, onSelectBoard, selectedBoa
   const handleSave = () => {
     if (inputValue.trim() !== '') {
       const newBoard = { id: Date.now().toString(), name: inputValue }
-      onAddBoard(newBoard) // Call the parent function to add the board
-      setInputValue('') // Clear input field
-      setIsAdding(false) // Hide input field
+      onAddBoard(newBoard) 
+      setInputValue('') 
+      setIsAdding(false) 
     }
   }
 
@@ -28,7 +28,7 @@ export default function UserNav({ boards, onAddBoard, onSelectBoard, selectedBoa
         {boards.map((board) => (
           <h2
             key={board.id}
-            onClick={() => onSelectBoard(board.id)} // Switch to the selected board
+            onClick={() => onSelectBoard(board.id)} 
             className={`text-lg font-medium m-2 text-center border border-gray-600 w-60 h-12 rounded-lg cursor-pointer flex items-center justify-center bg-gray-700 text-white hover:bg-gray-600 hover:shadow-md transition-all overflow-hidden ${
               selectedBoardId === board.id ? 'outline outline-2 outline-white' : ''
             }`}

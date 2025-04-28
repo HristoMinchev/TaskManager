@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export default function AddBoard({ onAdd }) {
   const [name, setName] = useState('')
-  const [status, setStatus] = useState('Backlog') // Default status
+  const [status, setStatus] = useState('Backlog') 
   const [info, setInfo] = useState('')
   const [isOpen, setIsOpen] = useState(false)
 

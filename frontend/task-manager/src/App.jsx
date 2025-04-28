@@ -4,19 +4,19 @@ import UserNav from './assets/Components/UserNav.jsx'
 import Boards from './assets/Components/Boards.jsx'
 
 function App() {
-  const [boards, setBoards] = useState([]) // Initialize with an empty array
-  const [selectedBoardId, setSelectedBoardId] = useState(null) // No board selected initially
+  const [boards, setBoards] = useState([]) 
+  const [selectedBoardId, setSelectedBoardId] = useState(null) 
 
   const handleAddBoard = (newBoard) => {
-    setBoards([...boards, { ...newBoard, tasks: [] }]) // Add the new board with an empty tasks array
-    setSelectedBoardId(newBoard.id) // Switch to the newly created board
+    setBoards([...boards, { ...newBoard, tasks: [] }]) 
+    setSelectedBoardId(newBoard.id)
   }
 
   const handleAddTask = (boardId, task) => {
     setBoards((prevBoards) =>
       prevBoards.map((board) =>
         board.id === boardId
-          ? { ...board, tasks: [...board.tasks, task] } // Add the task to the selected board
+          ? { ...board, tasks: [...board.tasks, task] } 
           : board
       )
     )
@@ -26,14 +26,12 @@ function App() {
 
   return (
     <div className="flex h-screen w-screen">
-      {/* Pass boards, handleAddBoard, and setSelectedBoardId to UserNav */}
       <UserNav
           boards={boards}
           onAddBoard={handleAddBoard}
           onSelectBoard={setSelectedBoardId}
-          selectedBoardId={selectedBoardId} // Pass the selected board ID
+          selectedBoardId={selectedBoardId} 
       />
-      {/* Pass selectedBoard and handleAddTask to Boards */}
       {selectedBoard ? (
         <Boards
           tasks={selectedBoard.tasks}

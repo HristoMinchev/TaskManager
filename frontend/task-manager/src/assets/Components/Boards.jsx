@@ -4,8 +4,7 @@ import AddBoard from './AddBoard'
 
 export default function Boards({ tasks, onAddBoard }) {
   const [clicked, isClicked] = useState(false)
-
-  // Filter tasks by status
+  
   const backlogs = tasks.filter((task) => task.status === 'Backlog')
   const inProgress = tasks.filter((task) => task.status === 'In Progress')
   const inReview = tasks.filter((task) => task.status === 'In Review')
@@ -14,7 +13,6 @@ export default function Boards({ tasks, onAddBoard }) {
   return (
     <div className="flex-1 h-[calc(100vh-2rem)] m-5 p-5 border-1 rounded-xl text-white overflow-auto relative">
       <div className="flex flex-row gap-4">
-        {/* Backlogs Section */}
         <div className="flex-1 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-4 border border-gray-600 p-4 rounded-lg">
             <span className="h-4 w-4 bg-blue-500 rounded-full"></span>
@@ -33,7 +31,6 @@ export default function Boards({ tasks, onAddBoard }) {
           </div>
         </div>
 
-        {/* In Progress Section */}
         <div className="flex-1 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-4 border border-gray-600 p-4 rounded-lg">
             <span className="h-4 w-4 bg-yellow-500 rounded-full"></span>
@@ -52,7 +49,6 @@ export default function Boards({ tasks, onAddBoard }) {
           </div>
         </div>
 
-        {/* In Review Section */}
         <div className="flex-1 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-4 border border-gray-600 p-4 rounded-lg">
             <span className="h-4 w-4 bg-purple-500 rounded-full"></span>
@@ -71,7 +67,6 @@ export default function Boards({ tasks, onAddBoard }) {
           </div>
         </div>
 
-        {/* Completed Section */}
         <div className="flex-1 p-4 rounded-lg">
           <div className="flex items-center gap-2 mb-4 border border-gray-600 p-4 rounded-lg">
             <span className="h-4 w-4 bg-green-500 rounded-full"></span>
@@ -91,7 +86,6 @@ export default function Boards({ tasks, onAddBoard }) {
         </div>
       </div>
 
-      {/* Add Task Button */}
       <button
         onClick={() => isClicked(true)}
         className="absolute bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center cursor-pointer"
@@ -99,13 +93,12 @@ export default function Boards({ tasks, onAddBoard }) {
         <IoAddCircle size={34} />
       </button>
 
-      {/* AddBoard Modal */}
       {clicked && (
         <div className="absolute inset-0 bg-white/10 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-10">
           <div className="relative">
             <AddBoard onAdd={(newBoard) => {
-              onAddBoard(newBoard) // Pass the new board to App.jsx
-              isClicked(false) // Close the modal
+              onAddBoard(newBoard) 
+              isClicked(false) 
             }} />
             <button
               onClick={() => isClicked(false)}
